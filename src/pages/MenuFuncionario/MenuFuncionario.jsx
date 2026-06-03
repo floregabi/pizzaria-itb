@@ -1,8 +1,9 @@
 const MenuFuncionario = () => {
 
-    return(
-        <div>
-             <nav className="navbar navbar-expand-lg navbar-light bg-light p-2 rounded shadow-sm w-100">
+return (
+<div>
+
+ <nav className="navbar navbar-expand-lg navbar-light bg-light p-2 rounded shadow-sm w-100">
         <a className="navbar-brand" href="/pizzaria/funcionario/home">
           Home
         </a>
@@ -85,7 +86,6 @@ const MenuFuncionario = () => {
 
         </div>
     )
-
 }
 
 export default MenuFuncionario

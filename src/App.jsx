@@ -1,16 +1,15 @@
 import './App.css'
-import HomeFuncionario from './pages/HomeFuncionario/HomeFuncionario'
-
+import HomeFuncionario from "./pages/HomeFuncionario/HomeFuncionario"
+ 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
+ 
+return (
     <>
-    <div>
-      <HomeFuncionario/>
-    </div>
+      <div>
+        <HomeFuncionario />
+      </div>
     </>
   )
 }
-
+ 
 export default App
