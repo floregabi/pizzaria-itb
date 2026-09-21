@@ -82,7 +82,7 @@ const ListarProduto = () =>{
  
               <div className="table-responsive">
         <table className="table table-bordered table-striped table-hover">
-          <thead className="table-sucess">
+          <thead className="table-success">
             <tr>
               {/* <th>Código</th> */}
               <th>Nome</th>
