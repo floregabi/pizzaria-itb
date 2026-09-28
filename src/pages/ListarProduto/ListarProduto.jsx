@@ -4,6 +4,9 @@ import { Link } from "react-router-dom"
  
 import MenuFuncionario from "../MenuFuncionario/MenuFuncionario"
 import CredentialUser from "../../components/CredentialUser"
+
+import Modal from "../../components/Modal"
+
 import api from "../../services/api"
  
 const ListarProduto = () =>{
@@ -17,6 +20,9 @@ const ListarProduto = () =>{
   // Para nosso aplicativo, preciso de uma array de produtos iniciando com um array vazio
  
   const [produtos, setProdutos] = useState([])
+
+  const [isModalOpen, serIsModalOpen] = useState(false)
+  const [isProdutoAExcluir, serIdProdutoAExcluir] = useState(null)
  
   // useEffect: é um hook do React que serve para executar códigos que ficam fora do controle direito da renderização
   // visual, os chamados "efeitos colaterais"
@@ -46,6 +52,30 @@ const ListarProduto = () =>{
           })
  
   },[])
+
+  const OpenModal = (id) => {
+    setIdProdutoAExcluir (id)
+    setIsModalOpen(true)
+  }
+
+  const DeleteProduto = async () => {
+    try{
+      const response = await api.delete(`/produtos/${idProdutoAExcluir}`)
+      alert(response.data.message)
+
+      setProdutos((produtosAtuais) =>
+      produtosAtuais.filter(
+        (produto) => produto.id !== idProdutoAExcluir
+
+      )
+    )
+
+    } catch (error) {
+      alert(`Não foi possível a exclusão do produto com o id ${idProdutoAExcluir}`)
+    
+    }
+    setIsModalOpen(false)
+  }
  
     // const arrayProdutos = [
     //     {
@@ -130,8 +160,12 @@ const ListarProduto = () =>{
  
                   {/* Botão de Excluir */}
                   <button
-                    className="btn btn-sm btn-danger">
-                    <i className="fas fa-trash-alt"></i>{""}
+                    className="btn btn-sm btn-danger"
+                    onClick={() => OpenModal(produto.id)}
+                    >
+                    <i className="fas fa-trash-alt"
+                    ></i>{""}
+                    
                     {/* Ícone de excluir */}
                   </button>
                 </td>
@@ -155,7 +189,14 @@ const ListarProduto = () =>{
                 Novo Produto
                 </Link>
              </div>
- 
+
+
+             <Modal
+             isOpen={isModalOpen}
+             onClose={() => setIsModalOpen(false)}
+             onConfirm={DeleteProduto}
+             />
+
     </div>
     )
  
