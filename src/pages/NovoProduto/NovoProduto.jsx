@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react"
  
 import MenuFuncionario from "../MenuFuncionario/MenuFuncionario"
+import CredentialUser from "../../components/CredentialUser"
+
 import api from "../../services/api"
  
 const NovoProduto = () => {
@@ -57,6 +59,7 @@ const NovoProduto = () => {
         <div className="container">
  
             <MenuFuncionario />
+            <CredentialUser title="Lista de Produtos"/>
  
             <form onSubmit={enviarProduto} className="container-fluid p-4">
  
