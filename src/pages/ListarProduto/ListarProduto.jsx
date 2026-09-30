@@ -1,4 +1,6 @@
 import {useState, useEffect} from "react"
+
+import { Link, useNavigate } from "react-router-dom"
  
 import { Link } from "react-router-dom"
  
@@ -22,7 +24,9 @@ const ListarProduto = () =>{
   const [produtos, setProdutos] = useState([])
 
   const [isModalOpen, serIsModalOpen] = useState(false)
-  const [isProdutoAExcluir, serIdProdutoAExcluir] = useState(null)
+  const [idProdutoAExcluir, serIdProdutoAExcluir] = useState(null)
+
+  const navigate = useNavigate();
  
   // useEffect: é um hook do React que serve para executar códigos que ficam fora do controle direito da renderização
   // visual, os chamados "efeitos colaterais"
@@ -148,11 +152,13 @@ const ListarProduto = () =>{
                 {/* descrição */}
                 <td style={{ fontSize: "13px" }}> {produto.descricao}  </td>
                 <td className="text-center fs-6" style={{ width: "100px" }}>
- 
- 
                   {/* Botão de Editar */}
                   <button
-                    className="btn btn-sm btn-primary me-2">
+                    className="btn btn-sm btn-primary me-2"
+                      onClick={() =>
+                      navigate(`/produtos/editar/${produto.id}`)
+                      } 
+                      >
                     <i className="fas fa-pencil-alt"></i>{""}
                     {/* Ícone de editar */}
                   </button>
